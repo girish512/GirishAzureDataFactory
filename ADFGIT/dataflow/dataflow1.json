@@ -1,0 +1,74 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_hospital_admissions",
+						"type": "DatasetReference"
+					},
+					"name": "HospitalAdmissionsData"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_country_lookup",
+						"type": "DatasetReference"
+					},
+					"name": "countryLookupData"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_dim_date",
+						"type": "DatasetReference"
+					},
+					"name": "DimDateData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "HospitalAdmissionDaily",
+						"type": "DatasetReference"
+					},
+					"name": "hospitalAdmissionsDaily"
+				},
+				{
+					"dataset": {
+						"referenceName": "HospitalAdmissionWeekly",
+						"type": "DatasetReference"
+					},
+					"name": "hospitalAdmissionsWeekly"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SelectReqCol"
+				},
+				{
+					"name": "Lookup1"
+				},
+				{
+					"name": "SelectReqLookupCol"
+				},
+				{
+					"name": "ConditionalSplit1"
+				},
+				{
+					"name": "minumumdateofweek"
+				},
+				{
+					"name": "Aggregate1"
+				},
+				{
+					"name": "joinDateColumns"
+				},
+				{
+					"name": "joinDateColumnsWeekly"
+				}
+			],
+			"script": "source(output(\n\t\tcountry as string,\n\t\tindicator as string,\n\t\tdate as date 'dd-MM-yyyy',\n\t\tyear_week as string,\n\t\tvalue as double '000,000,000.000',\n\t\tsource as string,\n\t\turl as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> HospitalAdmissionsData\nsource(output(\n\t\tcountry as string,\n\t\tcountry_code_2_digit as string,\n\t\tcountry_code_3_digit as string,\n\t\tcontinent as string,\n\t\tpopulation as long\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> countryLookupData\nsource(output(\n\t\tdate_key as string,\n\t\tdate as string,\n\t\tyear as string,\n\t\tmonth as string,\n\t\tday as string,\n\t\tday_name as string,\n\t\tday_of_year as string,\n\t\tweek_of_month as string,\n\t\tweek_of_year as string,\n\t\tmonth_name as string,\n\t\tyear_month as string,\n\t\tyear_week as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> DimDateData\nHospitalAdmissionsData select(mapColumn(\n\t\tcountry,\n\t\tindicator,\n\t\treported_date = date,\n\t\treported_year_week = year_week,\n\t\tvalue,\n\t\tsource\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SelectReqCol\nSelectReqCol, countryLookupData lookup(SelectReqCol@country == countryLookupData@country,\n\tmultiple: true,\n\tbroadcast: 'auto')~> Lookup1\nLookup1 select(mapColumn(\n\t\tcountry = SelectReqCol@country,\n\t\tindicator,\n\t\treported_date,\n\t\treported_year_week,\n\t\tvalue,\n\t\tsource,\n\t\tcountry_code_2_digit,\n\t\tcountry_code_3_digit,\n\t\tpopulation\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SelectReqLookupCol\nSelectReqLookupCol split(indicator=='Daily hospital occupancy'||indicator=='Daily ICU occupancy',\n\tindicator=='Weekly new hospital admissions per 100k'||indicator=='Weekly new ICU admissions per 100k',\n\tdisjoint: false) ~> ConditionalSplit1@(Daily, Weekly)\nDimDateData derive(ecdc__year_week = year+'-W'+lpad(week_of_year,2,'0')) ~> minumumdateofweek\nminumumdateofweek aggregate(groupBy(ecdc__year_week),\n\tweek_start_date = min(date),\n\t\tweek_end_date = max(date)) ~> Aggregate1\nConditionalSplit1@Daily, Aggregate1 join(reported_year_week == ecdc__year_week,\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> joinDateColumns\nConditionalSplit1@Weekly, Aggregate1 join(reported_year_week == ecdc__year_week,\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> joinDateColumnsWeekly\njoinDateColumns sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tpreCommands: [],\n\tpostCommands: [],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> hospitalAdmissionsDaily\njoinDateColumnsWeekly sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tpreCommands: [],\n\tpostCommands: [],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> hospitalAdmissionsWeekly"
+		}
+	}
+}

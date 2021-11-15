@@ -1,0 +1,21 @@
+{
+	"name": "HospitalAdmissionDaily",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuredatalakestorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "parquet_files",
+				"fileSystem": "rawdata"
+			},
+			"compressionCodec": "gzip"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
