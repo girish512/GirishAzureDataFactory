@@ -1,0 +1,9 @@
+{
+	"name": "GirishADF",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6f8e28fa-3215-4348-9976-b5e8f415981a",
+		"tenantId": "b70f4d5d-6d07-4174-8591-db39bafdf2a4"
+	}
+}
