@@ -59,6 +59,31 @@
 						"type": "DelimitedTextReadSettings"
 					}
 				}
+			},
+			{
+				"name": "if_schema_matches",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "udata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "udata_schema",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('udata').output.structure,activity('udata_schema').output.structure)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
