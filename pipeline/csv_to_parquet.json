@@ -41,7 +41,7 @@
 						"mappings": [
 							{
 								"source": {
-									"type": "Int64",
+									"type": "String",
 									"ordinal": 1
 								},
 								"sink": {
@@ -51,7 +51,7 @@
 							},
 							{
 								"source": {
-									"type": "Int64",
+									"type": "String",
 									"ordinal": 2
 								},
 								"sink": {
@@ -61,7 +61,7 @@
 							},
 							{
 								"source": {
-									"type": "Int64",
+									"type": "String",
 									"ordinal": 3
 								},
 								"sink": {
