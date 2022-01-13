@@ -1,0 +1,10 @@
+{
+	"name": "LSKeyvault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://MyAzureLearningkey.vault.azure.net/"
+		}
+	}
+}
