@@ -11,7 +11,7 @@
 					"referenceName": "LSKeyvault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "girish512dl-kv-connectionstring"
+				"secretName": "sec-girish512fl-connectionstring"
 			}
 		}
 	},
