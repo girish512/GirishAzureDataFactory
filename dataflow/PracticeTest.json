@@ -8,15 +8,29 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"name": "source1"
+					"linkedService": {
+						"referenceName": "girishdl_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "udataParquet"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          movie_id as string,",
+				"          cust_id as string,",
+				"          rating as string,",
+				"          release_date as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet',",
+				"     fileSystem: 'girishdata',",
+				"     folderPath: 'files/rawdata/parquet_files',",
+				"     compressionCodec: 'none') ~> udataParquet"
 			]
 		}
 	}
