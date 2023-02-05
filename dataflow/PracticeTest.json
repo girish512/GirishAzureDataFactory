@@ -15,8 +15,24 @@
 					"name": "udataParquet"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "girishdl_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "girishdl_ls",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "surrogateKey1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          movie_id as string,",
@@ -30,7 +46,22 @@
 				"     format: 'parquet',",
 				"     fileSystem: 'girishdata',",
 				"     folderPath: 'files/rawdata/parquet_files',",
-				"     compressionCodec: 'none') ~> udataParquet"
+				"     compressionCodec: 'none') ~> udataParquet",
+				"udataParquet keyGenerate(output(SK as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"surrogateKey1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     fileSystem: 'girishdata',",
+				"     folderPath: 'files/rawdata/parquet_files',",
+				"     compressionCodec: 'none',",
+				"     filePattern:'udataSkParquet',",
+				"     umask: 0777,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
