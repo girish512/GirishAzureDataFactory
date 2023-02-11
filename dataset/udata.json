@@ -1,10 +1,6 @@
 {
 	"name": "udata",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "girishdl_ls",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
