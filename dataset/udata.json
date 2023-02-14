@@ -43,7 +43,7 @@
 			},
 			"dsFileName": {
 				"type": "string",
-				"defaultValue": "u.data"
+				"defaultValue": "u.data.parquet"
 			},
 			"dsSPADFValueName": {
 				"type": "string",
