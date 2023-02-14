@@ -39,6 +39,14 @@
 								"dsFileName": {
 									"value": "@pipeline().parameters.PLInputFileName",
 									"type": "Expression"
+								},
+								"dsSPADFValue": {
+									"value": "@pipeline().parameters.PLSPADFValue",
+									"type": "Expression"
+								},
+								"kvURL": {
+									"value": "@pipeline().parameters.kvUrl",
+									"type": "Expression"
 								}
 							},
 							"sink1": {
@@ -54,6 +62,14 @@
 								"Directory": "@pipeline().parameters.Directory",
 								"dsFileName": {
 									"value": "@pipeline().parameters.PLOutputFileName",
+									"type": "Expression"
+								},
+								"dsSPADFValue": {
+									"value": "@pipeline().parameters.PLSPADFValue",
+									"type": "Expression"
+								},
+								"kvUrl": {
+									"value": "@pipeline().parameters.kvUrl",
 									"type": "Expression"
 								}
 							}
@@ -91,6 +107,12 @@
 			"PLOutputFileName": {
 				"type": "string",
 				"defaultValue": "udata"
+			},
+			"PLSPADFValue": {
+				"type": "string"
+			},
+			"kvUrl": {
+				"type": "string"
 			}
 		},
 		"annotations": []
