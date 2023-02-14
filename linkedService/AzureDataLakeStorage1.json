@@ -7,6 +7,9 @@
 			},
 			"dlendpoint": {
 				"type": "String"
+			},
+			"LSSPADFValue": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
@@ -20,7 +23,13 @@
 				"type": "AzureKeyVaultSecret",
 				"store": {
 					"referenceName": "AZKVGirishProject",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"AZKVGirishProjectURL": {
+							"value": "@linkedService().LSSPADFValue",
+							"type": "Expression"
+						}
+					}
 				},
 				"secretName": "SPADFValue"
 			}
