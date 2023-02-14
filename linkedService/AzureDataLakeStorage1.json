@@ -34,7 +34,10 @@
 						}
 					}
 				},
-				"secretName": "SPADFValue"
+				"secretName": {
+					"value": "@linkedService().LSSPADFValue",
+					"type": "Expression"
+				}
 			}
 		}
 	}
