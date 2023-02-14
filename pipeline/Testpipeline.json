@@ -17,7 +17,47 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "Testdataflow",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"udata": {
+								"FileSystem": {
+									"value": "@pipeline().parameters.PLFileSystem",
+									"type": "Expression"
+								},
+								"Directory": {
+									"value": "@pipeline().parameters.PLDirectory",
+									"type": "Expression"
+								},
+								"dsappID": {
+									"value": "@pipeline().parameters.PLappID",
+									"type": "Expression"
+								},
+								"dsdlendpoint": {
+									"value": "@pipeline().parameters.PLendpoint",
+									"type": "Expression"
+								},
+								"dsFileName": {
+									"value": "@pipeline().parameters.PLInputFileName",
+									"type": "Expression"
+								}
+							},
+							"sink1": {
+								"dl_appid": {
+									"value": "@pipeline().parameters.PLappID",
+									"type": "Expression"
+								},
+								"dl_endpoint": {
+									"value": "@pipeline().parameters.PLendpoint",
+									"type": "Expression"
+								},
+								"FileSystem": "@pipeline().parameters.PLFileSystem",
+								"Directory": "@pipeline().parameters.Directory",
+								"dsFileName": {
+									"value": "@pipeline().parameters.PLOutputFileName",
+									"type": "Expression"
+								}
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
@@ -27,6 +67,26 @@
 				}
 			}
 		],
+		"parameters": {
+			"PLFileSystem": {
+				"type": "string"
+			},
+			"PLDirectory": {
+				"type": "string"
+			},
+			"PLappID": {
+				"type": "string"
+			},
+			"PLendpoint": {
+				"type": "string"
+			},
+			"PLInputFileName": {
+				"type": "string"
+			},
+			"PLOutputFileName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
