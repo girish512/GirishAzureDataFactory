@@ -4,7 +4,17 @@
 		"description": "Movie Rating Data",
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"ApplicationID": {
+					"value": "@dataset().dsappID",
+					"type": "Expression"
+				},
+				"dlendpoint": {
+					"value": "@dataset().dsdlendpoint",
+					"type": "Expression"
+				}
+			}
 		},
 		"parameters": {
 			"FileSystem": {
@@ -12,6 +22,12 @@
 			},
 			"Directory": {
 				"type": "String"
+			},
+			"dsappID": {
+				"type": "string"
+			},
+			"dsdlendpoint": {
+				"type": "string"
 			}
 		},
 		"folder": {
