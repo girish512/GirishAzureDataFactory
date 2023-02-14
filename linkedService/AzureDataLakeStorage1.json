@@ -1,5 +1,6 @@
 {
 	"name": "AzureDataLakeStorage1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"parameters": {
 			"ApplicationID": {
@@ -22,23 +23,7 @@
 			"tenant": "b70f4d5d-6d07-4174-8591-db39bafdf2a4",
 			"servicePrincipalId": "@{linkedService().ApplicationID}",
 			"servicePrincipalCredentialType": "ServicePrincipalKey",
-			"servicePrincipalCredential": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "AZKVGirishProject",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"AZKVGirishProjectURL": {
-							"value": "@linkedService().KVUrl",
-							"type": "Expression"
-						}
-					}
-				},
-				"secretName": {
-					"value": "@linkedService().LSSPADFValueName",
-					"type": "Expression"
-				}
-			}
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQERCQTQxQUQ1LTAyMzEtNDM4Ny1BMTdCLTkxMDJDNkI3RTE5Ql9iZTcyY2E3Mi04M2EwLTQ3YWQtYmQyZS05MjU1ZmJmODY0MTciDQp9"
 		}
 	}
 }
