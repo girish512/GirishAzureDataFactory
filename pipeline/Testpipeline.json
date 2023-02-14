@@ -69,22 +69,28 @@
 		],
 		"parameters": {
 			"PLFileSystem": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "/data"
 			},
 			"PLDirectory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "/Files/Input"
 			},
 			"PLappID": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "c548873b-bf6f-49da-b60f-a4b173ec0227"
 			},
 			"PLendpoint": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://dlgirishproject.dfs.core.windows.net/"
 			},
 			"PLInputFileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "u.data"
 			},
 			"PLOutputFileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "udata"
 			}
 		},
 		"annotations": []
