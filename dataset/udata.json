@@ -67,7 +67,7 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().FileSystem",
+					"value": "@dataset().Directory",
 					"type": "Expression"
 				},
 				"fileSystem": {
