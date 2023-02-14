@@ -1,0 +1,16 @@
+{
+	"name": "AZKVGirishProject",
+	"properties": {
+		"description": "Azure Key Vault Linked Service",
+		"parameters": {
+			"AZKVGirishProjectURL": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "@{linkedService().AZKVGirishProjectURL}"
+		}
+	}
+}
