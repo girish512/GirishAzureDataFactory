@@ -27,6 +27,9 @@
 			},
 			"Directory": {
 				"type": "string"
+			},
+			"dsFileName": {
+				"type": "string"
 			}
 		},
 		"folder": {
@@ -37,6 +40,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().dsFileName",
+					"type": "Expression"
+				},
 				"folderPath": {
 					"value": "@dataset().Directory",
 					"type": "Expression"
