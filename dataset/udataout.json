@@ -25,7 +25,7 @@
 			"FileSystem": {
 				"type": "string"
 			},
-			"outputpath": {
+			"Directory": {
 				"type": "string"
 			}
 		},
@@ -38,11 +38,11 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "@dataset().path",
+					"value": "@dataset().Directory",
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@dataset().container",
+					"value": "@dataset().FileSystem",
 					"type": "Expression"
 				}
 			},
