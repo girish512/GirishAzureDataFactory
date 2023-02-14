@@ -1,0 +1,29 @@
+{
+	"name": "AzureDataLakeStorage1",
+	"properties": {
+		"parameters": {
+			"ApplicationID": {
+				"type": "String"
+			},
+			"dlendpoint": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "@{linkedService().dlendpoint}",
+			"tenant": "b70f4d5d-6d07-4174-8591-db39bafdf2a4",
+			"servicePrincipalId": "@{linkedService().ApplicationID}",
+			"servicePrincipalCredentialType": "ServicePrincipalKey",
+			"servicePrincipalCredential": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AZKVGirishProject",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SPADFValue"
+			}
+		}
+	}
+}
