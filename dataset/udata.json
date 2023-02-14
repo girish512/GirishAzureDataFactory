@@ -26,25 +26,32 @@
 		},
 		"parameters": {
 			"FileSystem": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "/data"
 			},
 			"Directory": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "/Files/Input"
 			},
 			"dsappID": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "c548873b-bf6f-49da-b60f-a4b173ec0227"
 			},
 			"dsdlendpoint": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://dlgirishproject.dfs.core.windows.net/"
 			},
 			"dsFileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "u.data"
 			},
 			"dsSPADFValue": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Nzv8Q~XqtVVwFdE1uHNMcsaBYvfom0zupK6Zza4g"
 			},
 			"kvURL": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://kvgirishproject.vault.azure.net/"
 			}
 		},
 		"folder": {
