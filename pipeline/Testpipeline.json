@@ -40,10 +40,6 @@
 									"value": "@pipeline().parameters.PLInputFileName",
 									"type": "Expression"
 								},
-								"dsSPADFValue": {
-									"value": "@pipeline().parameters.PLSPADFValue",
-									"type": "Expression"
-								},
 								"kvURL": {
 									"value": "@pipeline().parameters.kvUrl",
 									"type": "Expression"
