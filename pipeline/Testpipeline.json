@@ -40,6 +40,7 @@
 									"value": "@pipeline().parameters.PLInputFileName",
 									"type": "Expression"
 								},
+								"dsSPADFValueName": "Nzv8Q~XqtVVwFdE1uHNMcsaBYvfom0zupK6Zza4g",
 								"kvURL": {
 									"value": "@pipeline().parameters.kvUrl",
 									"type": "Expression"
@@ -105,10 +106,12 @@
 				"defaultValue": "udata"
 			},
 			"PLSPADFValue": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "SPADFValue"
 			},
 			"kvUrl": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://kvgirishproject.vault.azure.net/"
 			}
 		},
 		"annotations": []
