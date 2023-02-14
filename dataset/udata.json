@@ -1,6 +1,7 @@
 {
 	"name": "udata",
 	"properties": {
+		"description": "Movie Rating Data",
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
