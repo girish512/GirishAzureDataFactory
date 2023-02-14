@@ -6,22 +6,11 @@
 		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [
-				{
-					"dataset": {
-						"referenceName": "udata",
-						"type": "DatasetReference"
-					},
-					"name": "udata"
-				}
-			],
+			"sources": [],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> udata"
+				""
 			]
 		}
 	}
