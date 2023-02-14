@@ -3,13 +3,48 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"ApplicationID": {
+					"value": "@dataset().dl_appid",
+					"type": "Expression"
+				},
+				"dlendpoint": {
+					"value": "@dataset().dl_endpoint",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"dl_appid": {
+				"type": "string"
+			},
+			"dl_endpoint": {
+				"type": "string"
+			},
+			"container": {
+				"type": "string"
+			},
+			"path": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "TargetFiles"
 		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().path",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().container",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "snappy"
 		},
