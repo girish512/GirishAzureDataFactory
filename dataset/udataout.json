@@ -12,6 +12,10 @@
 				"dlendpoint": {
 					"value": "@dataset().dl_endpoint",
 					"type": "Expression"
+				},
+				"LSSPADFValue": {
+					"value": "@dataset().dsSPADFValue",
+					"type": "Expression"
 				}
 			}
 		},
@@ -30,6 +34,9 @@
 			},
 			"dsFileName": {
 				"type": "string"
+			},
+			"dsSPADFValue": {
+				"type": "String"
 			}
 		},
 		"folder": {
