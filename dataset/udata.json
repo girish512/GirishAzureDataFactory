@@ -14,8 +14,8 @@
 					"value": "@dataset().dsdlendpoint",
 					"type": "Expression"
 				},
-				"LSSPADFValue": {
-					"value": "@dataset().dsSPADFValue",
+				"LSSPADFValueName": {
+					"value": "@dataset().dsSPADFValueName",
 					"type": "Expression"
 				},
 				"KVUrl": {
@@ -45,7 +45,7 @@
 				"type": "string",
 				"defaultValue": "u.data"
 			},
-			"dsSPADFValue": {
+			"dsSPADFValueName": {
 				"type": "string",
 				"defaultValue": "Nzv8Q~XqtVVwFdE1uHNMcsaBYvfom0zupK6Zza4g"
 			},
