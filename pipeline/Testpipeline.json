@@ -39,7 +39,9 @@
 								"dsFileName": {
 									"value": "@pipeline().parameters.PLInputFileName",
 									"type": "Expression"
-								}
+								},
+								"dsSPADFValue": "Nzv8Q~XqtVVwFdE1uHNMcsaBYvfom0zupK6Zza4g",
+								"kvURL": "https://kvgirishproject.vault.azure.net/"
 							},
 							"sink1": {
 								"dl_appid": {
