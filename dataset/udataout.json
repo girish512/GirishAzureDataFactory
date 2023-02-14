@@ -22,10 +22,10 @@
 			"dl_endpoint": {
 				"type": "string"
 			},
-			"container": {
+			"FileSystem": {
 				"type": "string"
 			},
-			"path": {
+			"outputpath": {
 				"type": "string"
 			}
 		},
