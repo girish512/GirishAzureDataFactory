@@ -8,7 +8,7 @@
 			"dlendpoint": {
 				"type": "String"
 			},
-			"LSSPADFValue": {
+			"LSSPADFValueName": {
 				"type": "String"
 			},
 			"KVUrl": {
@@ -35,7 +35,7 @@
 					}
 				},
 				"secretName": {
-					"value": "@linkedService().LSSPADFValue",
+					"value": "@linkedService().LSSPADFValueName",
 					"type": "Expression"
 				}
 			}
