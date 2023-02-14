@@ -17,6 +17,10 @@
 				"LSSPADFValue": {
 					"value": "@dataset().dsSPADFValue",
 					"type": "Expression"
+				},
+				"KVUrl": {
+					"value": "@dataset().kvURL",
+					"type": "Expression"
 				}
 			}
 		},
@@ -37,6 +41,9 @@
 				"type": "string"
 			},
 			"dsSPADFValue": {
+				"type": "string"
+			},
+			"kvURL": {
 				"type": "string"
 			}
 		},
