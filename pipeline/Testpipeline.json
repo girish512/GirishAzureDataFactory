@@ -86,10 +86,11 @@
 			},
 			"PLInputFileName": {
 				"type": "string",
-				"defaultValue": "u.dataudata"
+				"defaultValue": "u.data"
 			},
 			"PLOutputFileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "udata"
 			}
 		},
 		"annotations": []
