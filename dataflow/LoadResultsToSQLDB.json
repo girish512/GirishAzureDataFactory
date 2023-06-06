@@ -1,0 +1,139 @@
+{
+	"name": "LoadResultsToSQLDB",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_resultsfile",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_tb_results",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "ls_dlgirishproject",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "alterRow1"
+				},
+				{
+					"name": "cast1"
+				},
+				{
+					"name": "Assert1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     filesystem as string,",
+				"     folderpath as string,",
+				"     filename as string",
+				"}",
+				"source(output(",
+				"          resultId as integer,",
+				"          raceId as integer,",
+				"          driverId as integer,",
+				"          constructorId as integer,",
+				"          number as integer,",
+				"          grid as integer,",
+				"          position as string,",
+				"          positionText as string,",
+				"          positionOrder as integer,",
+				"          points as integer,",
+				"          laps as integer,",
+				"          time as string,",
+				"          milliseconds as string,",
+				"          fastestLap as integer,",
+				"          rank as integer,",
+				"          fastestLapTime as string,",
+				"          fastestLapSpeed as double,",
+				"          statusId as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 10,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source1 derive(ingestion_date = currentDate()) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          ingestion_date,",
+				"          result_id = resultId,",
+				"          race_id = raceId,",
+				"          driver_id = driverId,",
+				"          constructor_id = constructorId,",
+				"          number,",
+				"          grid,",
+				"          position,",
+				"          points,",
+				"          laps,",
+				"          rank,",
+				"          fastest_lap = fastestLap,",
+				"          fastest_lap_time = fastestLapTime,",
+				"          fastest_lap_speed = fastestLapSpeed,",
+				"          status_id = statusId",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"cast1 alterRow(upsertIf(true())) ~> alterRow1",
+				"select1 cast(output(",
+				"          position as integer",
+				"     ),",
+				"     errors: true) ~> cast1",
+				"alterRow1 assert(expectTrue(isDate(toString(ingestion_date)), false, 'ingestiondate')) ~> Assert1",
+				"Assert1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:false,",
+				"     updateable:false,",
+				"     upsertable:true,",
+				"     keys:['raceId','driverId'],",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'allErrors',",
+				"     transactionCommit: 'batch',",
+				"     reportSuccessOnError: false,",
+				"     outputAssertFailedRows: true,",
+				"     assertFailure_fileSystem: 'data',",
+				"     assertFailure_folderPath: 'Files/ErrorFiles/DBErrorFiles',",
+				"     ignoreAssertFailedRows: true,",
+				"     mapColumn(",
+				"          ingestion_date,",
+				"          result_id,",
+				"          raceId = race_id,",
+				"          driverId = driver_id,",
+				"          constructorId = constructor_id,",
+				"          number,",
+				"          grid,",
+				"          position,",
+				"          points,",
+				"          laps,",
+				"          rank,",
+				"          fastestLap = fastest_lap,",
+				"          fastestLapTime = fastest_lap_time,",
+				"          fastestLapSpeed = fastest_lap_speed,",
+				"          statusId = status_id",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
