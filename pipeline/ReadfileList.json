@@ -45,11 +45,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Get Metadata1').output.childItems[1]",
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@equals(string(activity('Get Metadata1').output.childItems),'File')\n",
+						"value": "@equals(string(activity('Get Metadata1').output.childItems[1]),'File')\n",
 						"type": "Expression"
 					}
 				}
