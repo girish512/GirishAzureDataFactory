@@ -66,6 +66,20 @@
 								"dataflow": {
 									"referenceName": "LoadResultsToSQLDB",
 									"type": "DataFlowReference",
+									"parameters": {
+										"filesystem": {
+											"value": "'@{pipeline().parameters.FileSystem}'",
+											"type": "Expression"
+										},
+										"folderpath": {
+											"value": "'@{concat(pipeline().parameters.FilePath,pipeline().parameters.FolderDate)}'",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "'@{pipeline().parameters.FileName}'",
+											"type": "Expression"
+										}
+									},
 									"datasetParameters": {
 										"source1": {
 											"FolderDate": {
