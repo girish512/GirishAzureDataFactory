@@ -25,7 +25,9 @@
 							}
 						}
 					},
-					"fieldList": [],
+					"fieldList": [
+						"structure"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"recursive": true,
