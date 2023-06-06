@@ -104,16 +104,20 @@
 		],
 		"parameters": {
 			"FolderDate": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "2021-03-21"
 			},
 			"FileSystem": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "data"
 			},
 			"FilePath": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Files/Input/f1db_csv"
 			},
 			"FileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "results.json"
 			}
 		},
 		"variables": {
