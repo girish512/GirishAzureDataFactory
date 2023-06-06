@@ -49,6 +49,8 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"isSequential": false,
+					"batchCount": 1,
 					"activities": [
 						{
 							"name": "Data flow1",
