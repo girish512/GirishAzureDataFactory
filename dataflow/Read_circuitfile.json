@@ -12,13 +12,24 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "ls_db_formula1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
-					"name": "derivedColumn1"
+					"name": "derivedColumn"
 				},
 				{
-					"name": "filterderivedcolumntrue"
+					"name": "select1"
+				},
+				{
+					"name": "alterRow1"
 				}
 			],
 			"scriptLines": [
@@ -33,18 +44,54 @@
 				"          alt as string,",
 				"          url as string",
 				"     ),",
-				"     allowSchemaDrift: false,",
-				"     validateSchema: true,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
 				"     limit: 10,",
 				"     ignoreNoFilesFound: false,",
 				"     rowUrlColumn: 'SourceFileName') ~> source1",
-				"source1 derive(Ingested_Date = currentDate(),",
+				"source1 derive(INGESTED_DATE = currentDate()) ~> derivedColumn",
+				"derivedColumn select(mapColumn(",
 				"          circuit_id = circuitId,",
 				"          circuit_ref = circuitRef,",
-				"          circuit_name = name,",
-				"          location = location,",
-				"          country = country) ~> derivedColumn1",
-				"derivedColumn1 filter(equals(Ingested_Date, true())) ~> filterderivedcolumntrue"
+				"          name,",
+				"          location,",
+				"          country,",
+				"          lat,",
+				"          lng,",
+				"          alt,",
+				"          ingested_date = INGESTED_DATE",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 alterRow(upsertIf(true())) ~> alterRow1",
+				"alterRow1 sink(allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'circuit',",
+				"     insertable: false,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: true,",
+				"     keys:['circuit_id'],",
+				"     skipKeyWrites:true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          circuit_id,",
+				"          circuit_ref,",
+				"          name,",
+				"          location,",
+				"          country,",
+				"          lat,",
+				"          lng,",
+				"          alt,",
+				"          url,",
+				"          SourceFileName,",
+				"          ingested_date",
+				"     )) ~> sink1"
 			]
 		}
 	}
