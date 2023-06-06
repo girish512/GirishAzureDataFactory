@@ -78,20 +78,7 @@
 				"     skipKeyWrites:true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError',",
-				"     mapColumn(",
-				"          circuit_id,",
-				"          circuit_ref,",
-				"          name,",
-				"          location,",
-				"          country,",
-				"          lat,",
-				"          lng,",
-				"          alt,",
-				"          url,",
-				"          SourceFileName,",
-				"          ingested_date",
-				"     )) ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
