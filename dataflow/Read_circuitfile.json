@@ -1,0 +1,51 @@
+{
+	"name": "Read_circuitfile",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_circuits",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "filterderivedcolumntrue"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          circuitId as string,",
+				"          circuitRef as string,",
+				"          name as string,",
+				"          location as string,",
+				"          country as string,",
+				"          lat as string,",
+				"          lng as string,",
+				"          alt as string,",
+				"          url as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     limit: 10,",
+				"     ignoreNoFilesFound: false,",
+				"     rowUrlColumn: 'SourceFileName') ~> source1",
+				"source1 derive(Ingested_Date = currentDate(),",
+				"          circuit_id = circuitId,",
+				"          circuit_ref = circuitRef,",
+				"          circuit_name = name,",
+				"          location = location,",
+				"          country = country) ~> derivedColumn1",
+				"derivedColumn1 filter(equals(Ingested_Date, true())) ~> filterderivedcolumntrue"
+			]
+		}
+	}
+}
