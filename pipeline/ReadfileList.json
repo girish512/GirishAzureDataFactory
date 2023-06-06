@@ -47,6 +47,10 @@
 					"items": {
 						"value": "@activity('Get Metadata1').output.itemType",
 						"type": "Expression"
+					},
+					"condition": {
+						"value": "true()",
+						"type": "Expression"
 					}
 				}
 			}
