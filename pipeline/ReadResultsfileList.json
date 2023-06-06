@@ -52,7 +52,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.itemName",
+						"value": "array(activity('Get Metadata1').output.itemName)",
 						"type": "Expression"
 					},
 					"isSequential": false,
