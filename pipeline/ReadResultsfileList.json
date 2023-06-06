@@ -1,5 +1,5 @@
 {
-	"name": "ReadfileList",
+	"name": "ReadResultsfileList",
 	"properties": {
 		"activities": [
 			{
@@ -16,18 +16,23 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "ds_inputfilelist",
-						"type": "DatasetReference"
+						"referenceName": "ds_resultsfile",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderDate": {
+								"value": "@pipeline().parameters.FolderDate",
+								"type": "Expression"
+							}
+						}
 					},
-					"fieldList": [
-						"childItems"
-					],
+					"fieldList": [],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
+						"type": "JsonReadSettings"
 					}
 				}
 			},
@@ -44,28 +49,57 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@activity('Get Metadata1').output.childItems[1].type",
-						"type": "Expression"
-					},
 					"activities": [
 						{
-							"name": "Set variable1",
-							"type": "SetVariable",
+							"name": "Data flow1",
+							"type": "ExecuteDataFlow",
 							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "filetype",
-								"value": {
-									"value": "@item()",
-									"type": "Expression"
-								}
+								"dataflow": {
+									"referenceName": "LoadResultsToSQLDB",
+									"type": "DataFlowReference",
+									"datasetParameters": {
+										"source1": {
+											"FolderDate": {
+												"value": "@pipeline().parameters.FolderDate",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
 							}
 						}
 					]
 				}
 			}
 		],
+		"parameters": {
+			"FolderDate": {
+				"type": "string"
+			},
+			"FileSystem": {
+				"type": "string"
+			},
+			"FilePath": {
+				"type": "string"
+			},
+			"FileName": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"filetype": {
 				"type": "String"
