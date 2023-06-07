@@ -30,9 +30,6 @@
 				},
 				{
 					"name": "cast1"
-				},
-				{
-					"name": "Assert1"
 				}
 			],
 			"scriptLines": [
@@ -90,8 +87,7 @@
 				"          position as integer",
 				"     ),",
 				"     errors: true) ~> cast1",
-				"cast1 assert(expectTrue(ERROR_FUNCTION(''), false, '')) ~> Assert1",
-				"Assert1 sink(allowSchemaDrift: true,",
+				"cast1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
