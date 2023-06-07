@@ -52,19 +52,19 @@
 		"parameters": {
 			"FolderDate": {
 				"type": "string",
-				"defaultValue": "2021-03-21"
+				"defaultValue": "@triggerBody().folder_date"
 			},
 			"FileSystem": {
 				"type": "string",
-				"defaultValue": "data"
+				"defaultValue": "@triggerBody().file_system"
 			},
 			"FilePath": {
 				"type": "string",
-				"defaultValue": "Files/Input/f1db_csv"
+				"defaultValue": "@triggerBody().file_path"
 			},
 			"FileName": {
 				"type": "string",
-				"defaultValue": "results.json"
+				"defaultValue": "@triggerBody().file_name"
 			}
 		},
 		"variables": {
