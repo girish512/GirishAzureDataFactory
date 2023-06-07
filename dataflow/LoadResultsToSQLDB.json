@@ -12,19 +12,7 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "ds_tb_results",
-						"type": "DatasetReference"
-					},
-					"name": "sink1",
-					"rejectedDataLinkedService": {
-						"referenceName": "ls_dlgirishproject",
-						"type": "LinkedServiceReference"
-					}
-				}
-			],
+			"sinks": [],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
@@ -98,37 +86,7 @@
 				"          position as integer",
 				"     ),",
 				"     errors: true) ~> cast1",
-				"alterRow1 assert(expectTrue(isDate(toString(ingestion_date)), false, 'ingestiondate')) ~> Assert1",
-				"Assert1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:false,",
-				"     updateable:false,",
-				"     upsertable:true,",
-				"     keys:['raceId','driverId'],",
-				"     format: 'table',",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 1,",
-				"     errorHandlingOption: 'stopOnFirstError',",
-				"     ignoreAssertFailedRows: true,",
-				"     mapColumn(",
-				"          ingestion_date,",
-				"          result_id,",
-				"          raceId = race_id,",
-				"          driverId = driver_id,",
-				"          constructorId = constructor_id,",
-				"          number,",
-				"          grid,",
-				"          position,",
-				"          points,",
-				"          laps,",
-				"          rank,",
-				"          fastestLap = fastest_lap,",
-				"          fastestLapTime = fastest_lap_time,",
-				"          fastestLapSpeed = fastest_lap_speed,",
-				"          statusId = status_id",
-				"     )) ~> sink1"
+				"alterRow1 assert(expectTrue(isDate(toString(ingestion_date)), false, 'ingestiondate')) ~> Assert1"
 			]
 		}
 	}
