@@ -68,7 +68,7 @@
 				"          fastestLapSpeed as double,",
 				"          statusId as integer",
 				"     ),",
-				"     allowSchemaDrift: true,",
+				"     allowSchemaDrift: false,",
 				"     validateSchema: false,",
 				"     limit: 10,",
 				"     ignoreNoFilesFound: false,",
