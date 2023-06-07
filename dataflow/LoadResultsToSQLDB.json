@@ -12,7 +12,15 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_tb_results",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
@@ -21,13 +29,7 @@
 					"name": "select1"
 				},
 				{
-					"name": "alterRow1"
-				},
-				{
 					"name": "cast1"
-				},
-				{
-					"name": "Assert1"
 				}
 			],
 			"scriptLines": [
@@ -81,12 +83,37 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"cast1 alterRow(upsertIf(true())) ~> alterRow1",
 				"select1 cast(output(",
 				"          position as integer",
 				"     ),",
 				"     errors: true) ~> cast1",
-				"alterRow1 assert(expectTrue(isDate(toString(ingestion_date)), false, 'ingestiondate')) ~> Assert1"
+				"cast1 sink(allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ingestion_date,",
+				"          result_id,",
+				"          race_id,",
+				"          driver_id,",
+				"          constructor_id,",
+				"          number,",
+				"          grid,",
+				"          position,",
+				"          points,",
+				"          laps,",
+				"          rank,",
+				"          fastest_lap,",
+				"          fastest_lap_time,",
+				"          fastest_lap_speed,",
+				"          status_id",
+				"     )) ~> sink1"
 			]
 		}
 	}
