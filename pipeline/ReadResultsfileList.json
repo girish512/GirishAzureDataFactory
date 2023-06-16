@@ -1,0 +1,77 @@
+{
+	"name": "ReadResultsfileList",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "LoadResultsToSQLDB",
+						"type": "DataFlowReference",
+						"parameters": {
+							"filesystem": {
+								"value": "'@{pipeline().parameters.FileSystem}'",
+								"type": "Expression"
+							},
+							"folderpath": {
+								"value": "'@{pipeline().parameters.FilePath}'",
+								"type": "Expression"
+							},
+							"filename": {
+								"value": "'@{pipeline().parameters.FileName}'",
+								"type": "Expression"
+							}
+						},
+						"datasetParameters": {
+							"source1": {
+								"FolderDate": {
+									"value": "@pipeline().parameters.FolderDate",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"FolderDate": {
+				"type": "string",
+				"defaultValue": "@triggerBody().folder_date"
+			},
+			"FileSystem": {
+				"type": "string",
+				"defaultValue": "@triggerBody().file_system"
+			},
+			"FilePath": {
+				"type": "string",
+				"defaultValue": "@triggerBody().file_path"
+			},
+			"FileName": {
+				"type": "string",
+				"defaultValue": "@triggerBody().file_name"
+			}
+		},
+		"variables": {
+			"filetype": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}

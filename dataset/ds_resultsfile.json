@@ -1,0 +1,86 @@
+{
+	"name": "ds_resultsfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dlgirishproject",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FolderDate": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "results.json",
+				"folderPath": {
+					"value": "@concat('Files/Input/f1db_csv/',dataset().FolderDate)",
+					"type": "Expression"
+				},
+				"fileSystem": "data"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"resultId": {
+					"type": "integer"
+				},
+				"raceId": {
+					"type": "integer"
+				},
+				"driverId": {
+					"type": "integer"
+				},
+				"constructorId": {
+					"type": "integer"
+				},
+				"number": {
+					"type": "integer"
+				},
+				"grid": {
+					"type": "integer"
+				},
+				"position": {
+					"type": "null"
+				},
+				"positionText": {
+					"type": "null"
+				},
+				"positionOrder": {
+					"type": "integer"
+				},
+				"points": {
+					"type": "integer"
+				},
+				"laps": {
+					"type": "integer"
+				},
+				"time": {
+					"type": "string"
+				},
+				"milliseconds": {
+					"type": "null"
+				},
+				"fastestLap": {
+					"type": "integer"
+				},
+				"rank": {
+					"type": "integer"
+				},
+				"fastestLapTime": {
+					"type": "string"
+				},
+				"fastestLapSpeed": {
+					"type": "number"
+				},
+				"statusId": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}

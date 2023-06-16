@@ -1,0 +1,22 @@
+{
+	"name": "ds_inputfilelist",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dlgirishproject",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Files/Input",
+				"fileSystem": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

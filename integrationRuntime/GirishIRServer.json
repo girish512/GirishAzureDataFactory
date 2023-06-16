@@ -1,0 +1,6 @@
+{
+	"name": "GirishIRServer",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
