@@ -1,0 +1,30 @@
+{
+	"name": "DS_GET_TABLE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_db_formula1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SCHEMA": {
+				"type": "string"
+			},
+			"TABLE": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().SCHEMA",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().TABLE",
+				"type": "Expression"
+			}
+		}
+	}
+}
