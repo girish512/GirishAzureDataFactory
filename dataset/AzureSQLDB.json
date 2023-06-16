@@ -5,8 +5,26 @@
 			"referenceName": "ls_db_formula1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SCHEMA": {
+				"type": "string"
+			},
+			"TABLENAME": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().SCHEMA",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().TABLENAME",
+				"type": "Expression"
+			}
+		}
 	}
 }
