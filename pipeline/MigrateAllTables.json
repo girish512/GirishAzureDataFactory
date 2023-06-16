@@ -67,8 +67,11 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
+									"writeBatchSize": 10000,
 									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
 								"translator": {
@@ -99,7 +102,17 @@
 							"outputs": [
 								{
 									"referenceName": "DS_SQL_LOADTOTABLE",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"SCHEMA": {
+											"value": "@item().SCHEMA",
+											"type": "Expression"
+										},
+										"TABLE": {
+											"value": "@concat(item().TABLE,'_MIGRATE')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
