@@ -1,0 +1,20 @@
+{
+	"name": "DS_SQL_LOADTOTABLE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_db_formula1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SCHEMA": {
+				"type": "string"
+			},
+			"TABLE": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
