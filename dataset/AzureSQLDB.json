@@ -1,0 +1,12 @@
+{
+	"name": "AzureSQLDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_db_formula1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
