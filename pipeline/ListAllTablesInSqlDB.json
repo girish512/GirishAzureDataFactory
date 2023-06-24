@@ -1,0 +1,6 @@
+{
+	"name": "ListAllTablesInSqlDB",
+	"properties": {
+		"annotations": []
+	}
+}
