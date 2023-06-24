@@ -9,6 +9,10 @@
 			"GP_InputFilePath": {
 				"type": "string",
 				"value": "Files/Input/f1db_csv/"
+			},
+			"GP_TestFolder": {
+				"type": "string",
+				"value": "Files/Test/"
 			}
 		}
 	},
