@@ -5,6 +5,10 @@
 			"FileSystem_Name": {
 				"type": "string",
 				"value": "Data"
+			},
+			"InputFilePath": {
+				"type": "string",
+				"value": "Files/Input/f1db_csv/"
 			}
 		}
 	},
