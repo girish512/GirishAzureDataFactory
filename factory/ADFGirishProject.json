@@ -2,7 +2,7 @@
 	"name": "ADFGirishProject",
 	"properties": {
 		"globalParameters": {
-			"FileSystem_Name": {
+			"GP_FileSystem": {
 				"type": "string",
 				"value": "Data/"
 			},
