@@ -4,7 +4,7 @@
 		"globalParameters": {
 			"FileSystem_Name": {
 				"type": "string",
-				"value": "Data"
+				"value": "Data/"
 			},
 			"InputFilePath": {
 				"type": "string",
