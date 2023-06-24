@@ -1,0 +1,12 @@
+{
+	"name": "ADFGirishProject",
+	"properties": {
+		"globalParameters": {
+			"FileSystem_Name": {
+				"type": "string",
+				"value": "Data"
+			}
+		}
+	},
+	"location": "southindia"
+}
