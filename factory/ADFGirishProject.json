@@ -4,7 +4,7 @@
 		"globalParameters": {
 			"GP_FileSystem": {
 				"type": "string",
-				"value": "Data"
+				"value": "data"
 			},
 			"GP_InputFilePath": {
 				"type": "string",
