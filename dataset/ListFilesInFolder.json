@@ -1,0 +1,29 @@
+{
+	"name": "ListFilesInFolder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dlgirishproject",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileSystem": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
