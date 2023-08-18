@@ -119,7 +119,7 @@
 									"parameters": {
 										"FileSystem": "@pipeline().globalParameters.GP_FileSystem",
 										"Directory": {
-											"value": "@concat(concat(pipeline().globalParameters.GP_InputFilePath,'2021-03-21'),item().name)",
+											"value": "@concat(concat(pipeline().globalParameters.GP_InputFilePath,'2021-03-21/'),item().name)",
 											"type": "Expression"
 										},
 										"FIleName": "*"
