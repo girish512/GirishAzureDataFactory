@@ -121,10 +121,13 @@
 										"Directory": {
 											"value": "@concat(concat(pipeline().globalParameters.GP_InputFilePath,'2021-03-21'),item().name)",
 											"type": "Expression"
-										}
+										},
+										"FIleName": "*"
 									}
 								},
-								"fieldList": [],
+								"fieldList": [
+									"size"
+								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"enablePartitionDiscovery": false
