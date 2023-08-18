@@ -58,6 +58,29 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "FoldersOnly",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "ListFolders",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('ListFolders').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(item().type,'Folder')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
